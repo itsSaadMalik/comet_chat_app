@@ -1,0 +1,1 @@
+enum UserTypeEnums { user, admin }
