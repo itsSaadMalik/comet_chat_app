@@ -1,7 +1,6 @@
 import 'package:comet_chat_app/DI/shared_preferences_injection.dart';
 import 'package:comet_chat_app/configs/route%20configs/route_configs.dart';
 import 'package:comet_chat_app/core/themes/app_theme.dart';
-import 'package:comet_chat_app/features/home/view(presentaion)/home_screen.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -18,14 +17,14 @@ void main() async {
   runApp(
     ProviderScope(
       overrides: [sharedPreferenceProvider.overrideWithValue(pref)],
-      child: const MyApp(),
+      child: MyApp(),
     ),
   );
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
+  MyApp({super.key});
+  final routes = RouteConfigs().router;
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -35,7 +34,7 @@ class MyApp extends StatelessWidget {
       theme: MediaQuery.of(context).platformBrightness == Brightness.light
           ? AppTheme.appLightTheme
           : AppTheme.appDarkTheme,
-      routerConfig: RouteConfigs().router,
+      routerConfig: routes,
     );
   }
 
