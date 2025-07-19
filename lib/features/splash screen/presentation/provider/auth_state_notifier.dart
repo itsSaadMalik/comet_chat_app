@@ -5,7 +5,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 class AuthStateNotifier extends ChangeNotifier {
   final Ref ref;
-  final name = 'o';
+
   late ProviderSubscription<AsyncValue<User?>> subscription;
   AuthStateNotifier({required this.ref}) {
     subscription = ref.listen<AsyncValue<User?>>(authStateStreamProvider, (
@@ -17,6 +17,7 @@ class AuthStateNotifier extends ChangeNotifier {
       }
     });
   }
+  User? get curenntUser => ref.read(authStateStreamProvider).value;
   @override
   void dispose() {
     subscription.close();
@@ -25,5 +26,6 @@ class AuthStateNotifier extends ChangeNotifier {
 }
 
 final authStateProvider = Provider((ref) {
+  ref.onDispose(() => 'authStateProvider disposed');
   return AuthStateNotifier(ref: ref);
 });
