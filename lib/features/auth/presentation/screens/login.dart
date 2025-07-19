@@ -1,3 +1,4 @@
+import 'package:comet_chat_app/core/themes/edge_insets.dart';
 import 'package:comet_chat_app/features/auth/application/providers/email_authsrc_provider.dart';
 import 'package:comet_chat_app/features/auth/application/providers/google_auth_src_provider.dart';
 import 'package:comet_chat_app/features/auth/data/model/auth%20credentials/email_credentials.dart';
@@ -17,6 +18,18 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     final emailAuth = ref.watch(emailAuthSourceProvider);
     final googleAuth = ref.watch(googleAuthSrcProvider);
 
-    return Scaffold(body: Container());
+    return Scaffold(
+      body: SafeArea(
+        child: Container(
+          constraints: BoxConstraints.expand(),
+          padding: standardEdgeInserts,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [Text('Login')],
+          ),
+        ),
+      ),
+    );
   }
 }

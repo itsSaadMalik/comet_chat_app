@@ -1,5 +1,6 @@
 import 'package:comet_chat_app/DI/shared_preferences_injection.dart';
 import 'package:comet_chat_app/configs/route%20configs/route_configs.dart';
+import 'package:comet_chat_app/configs/route%20configs/routes_provider.dart';
 import 'package:comet_chat_app/core/themes/app_theme.dart';
 
 import 'package:flutter/material.dart';
@@ -22,12 +23,13 @@ void main() async {
   );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
   MyApp({super.key});
-  final routes = RouteConfigs().router;
+  // final routes = RouteConfigs().router;
   // This widget is the root of your application.
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final routes = ref.watch(routesProvider);
     return MaterialApp.router(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,

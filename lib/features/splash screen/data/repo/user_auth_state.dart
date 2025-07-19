@@ -13,8 +13,10 @@ class UserAuthState implements UserAuthStateRepo {
     required this.sharedPreferences,
   });
   @override
-  Stream<AuthState> getAuthState() {
-    return supabaseClient.auth.onAuthStateChange;
+  Stream<User?> getAuthState() {
+    return supabaseClient.auth.onAuthStateChange.map(
+      (event) => event.session?.user,
+    );
     // try {
     //   // final subs=supabaseClient.auth.onAuthStateChange.listen((event) => null,);
     // } catch (e) {
