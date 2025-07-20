@@ -1,5 +1,5 @@
 import 'package:comet_chat_app/configs/comet_chat_configs.dart';
-import 'package:comet_chat_app/utils/extensions/log_extension.dart';
+import 'package:comet_chat_app/core/utils/extensions/log_extension.dart';
 import 'package:cometchat_calls_uikit/cometchat_calls_uikit.dart';
 import 'package:cometchat_chat_uikit/cometchat_chat_uikit.dart';
 

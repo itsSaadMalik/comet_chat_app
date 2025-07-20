@@ -12,8 +12,25 @@ class AppTheme {
       systemOverlayStyle: SystemUiOverlayStyle(statusBarColor: Colors.grey),
     ),
     textTheme: TextTheme(
-      bodyMedium: TextStyle(fontSize: 17, color: Colors.black),
+      bodyMedium: TextStyle(fontSize: 14, color: Colors.black),
       bodyLarge: TextStyle(fontSize: 23, color: Colors.black),
+    ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ButtonStyle(
+        foregroundColor: WidgetStatePropertyAll(Colors.black),
+        padding: WidgetStatePropertyAll(
+          EdgeInsets.only(top: 15, bottom: 15, left: 0),
+        ),
+        backgroundColor: WidgetStatePropertyAll(
+          const Color.fromARGB(255, 221, 221, 221),
+        ),
+        fixedSize: WidgetStatePropertyAll(Size(300, 70)),
+        shape: WidgetStatePropertyAll(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadiusGeometry.circular(12),
+          ),
+        ),
+      ),
     ),
   );
   static ThemeData get appDarkTheme => ThemeData(

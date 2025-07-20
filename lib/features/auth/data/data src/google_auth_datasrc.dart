@@ -4,7 +4,7 @@ import 'package:comet_chat_app/core/enums/auth_status.dart';
 import 'package:comet_chat_app/features/auth/data/model/auth_results.dart';
 import 'package:comet_chat_app/features/auth/domain/data%20src/auth_datasrc.dart';
 import 'package:comet_chat_app/features/auth/domain/entity/auth_credentials_base.dart';
-import 'package:comet_chat_app/utils/extensions/log_extension.dart';
+import 'package:comet_chat_app/core/utils/extensions/log_extension.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class GoogleAuthsource implements AuthDatasrc {

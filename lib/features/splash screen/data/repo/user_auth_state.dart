@@ -1,5 +1,5 @@
 import 'package:comet_chat_app/features/splash%20screen/domain/repo/auth_state.dart';
-import 'package:comet_chat_app/utils/extensions/log_extension.dart';
+import 'package:comet_chat_app/core/utils/extensions/log_extension.dart';
 import 'package:gotrue/src/types/auth_state.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';

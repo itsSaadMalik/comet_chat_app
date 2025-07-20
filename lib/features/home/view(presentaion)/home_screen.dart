@@ -1,5 +1,5 @@
 import 'package:comet_chat_app/features/conversations/conversation_screen.dart';
-import 'package:comet_chat_app/utils/services/initialize_comet_chat.dart';
+import 'package:comet_chat_app/core/utils/services/initialize_comet_chat.dart';
 import 'package:cometchat_chat_uikit/cometchat_chat_uikit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

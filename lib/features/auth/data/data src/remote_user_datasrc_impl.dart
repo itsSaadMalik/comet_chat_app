@@ -4,7 +4,7 @@ import 'package:comet_chat_app/core/helpers/fieldnames/user_model_fieldnames.dar
 import 'package:comet_chat_app/core/helpers/models/operation_results_model.dart';
 import 'package:comet_chat_app/features/auth/data/model/user_model.dart';
 import 'package:comet_chat_app/features/auth/domain/data%20src/remote_user_datasrc.dart';
-import 'package:comet_chat_app/utils/extensions/log_extension.dart';
+import 'package:comet_chat_app/core/utils/extensions/log_extension.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class RemoteUserDatasrcImpl implements RemoteUserDatasrc {

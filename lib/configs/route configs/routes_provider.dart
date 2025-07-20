@@ -4,7 +4,7 @@ import 'package:comet_chat_app/features/home/view(presentaion)/home_screen.dart'
 import 'package:comet_chat_app/features/splash%20screen/presentation/provider/auth_state_notifier.dart';
 import 'package:comet_chat_app/features/splash%20screen/presentation/provider/login_state_provider.dart';
 import 'package:comet_chat_app/features/splash%20screen/presentation/screens/splash_screen.dart';
-import 'package:comet_chat_app/utils/extensions/log_extension.dart';
+import 'package:comet_chat_app/core/utils/extensions/log_extension.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 

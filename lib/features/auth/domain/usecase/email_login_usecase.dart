@@ -5,7 +5,7 @@ import 'package:comet_chat_app/features/auth/data/model/auth_results.dart';
 import 'package:comet_chat_app/features/auth/data/model/user_model.dart';
 import 'package:comet_chat_app/features/auth/domain/entity/auth_credentials_base.dart';
 import 'package:comet_chat_app/features/auth/domain/entity/login_usecase_strategy.dart';
-import 'package:comet_chat_app/utils/extensions/log_extension.dart';
+import 'package:comet_chat_app/core/utils/extensions/log_extension.dart';
 
 class EmailLoginUsecase implements LoginUsecaseStrategy {
   final EmailAuthSource emailAuthSource;
