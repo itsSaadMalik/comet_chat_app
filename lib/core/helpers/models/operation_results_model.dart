@@ -4,10 +4,7 @@ class OperationResults {
   final OperationResultsEnums operationResultsStatus;
   final String? message;
 
-  OperationResults({
-    required this.operationResultsStatus,
-    required this.message,
-  });
+  OperationResults({required this.operationResultsStatus, this.message});
   @override
   bool operator ==(covariant OperationResults other) =>
       operationResultsStatus == other.operationResultsStatus;

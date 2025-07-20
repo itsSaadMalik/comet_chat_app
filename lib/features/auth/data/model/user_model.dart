@@ -1,4 +1,5 @@
 import 'package:comet_chat_app/core/enums/user_model_enums.dart';
+import 'package:comet_chat_app/core/enums/user_type_enums.dart';
 import 'package:comet_chat_app/core/helpers/fieldnames/user_model_fieldnames.dart';
 import 'package:comet_chat_app/core/helpers/fieldnames/user_type_fieldnames.dart';
 import 'package:comet_chat_app/features/auth/domain/entity/user_entity.dart';
@@ -12,6 +13,22 @@ class UserModel extends UserEntity {
     required super.profilePictureURL,
     required super.createdAt,
   });
+
+  UserModel copyWith({
+    String? username,
+    String? email,
+
+    UserTypeEnums? usertype,
+    String? profilePictureURL,
+    DateTime? createdAt,
+  }) => UserModel(
+    uid: uid,
+    username: username ?? this.username,
+    email: email ?? this.email,
+    usertype: usertype ?? this.usertype,
+    profilePictureURL: profilePictureURL ?? this.profilePictureURL,
+    createdAt: createdAt ?? this.createdAt,
+  );
   factory UserModel.fromMap(Map<String, dynamic> data) => UserModel(
     username: data[UserModelEnums.username.fieldname] ?? '',
     email: data[UserModelEnums.email.fieldname] ?? '',
@@ -23,7 +40,14 @@ class UserModel extends UserEntity {
     createdAt: data[UserModelEnums.createdAt.fieldname] ?? DateTime.now(),
   );
 
-  toMap() => {};
+  Map<String, dynamic> toMap() => {
+    UserModelEnums.username.fieldname: username,
+    UserModelEnums.email.fieldname: email,
+    UserModelEnums.uid.fieldname: uid,
+    UserModelEnums.usertype.fieldname: usertype,
+    UserModelEnums.profilePictureURL.fieldname: profilePictureURL,
+    UserModelEnums.createdAt.fieldname: createdAt,
+  };
 
   @override
   bool operator ==(covariant UserModel other) => uid == other.uid;
