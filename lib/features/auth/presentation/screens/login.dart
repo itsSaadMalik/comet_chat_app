@@ -36,9 +36,11 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
       oAuthLoginUsecaseProvider(AuthType.facebook),
     );
     final formKey = ref.watch(formStateProvider);
-    return Scaffold(
-      body: SafeArea(
-        child: Container(
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: () => FocusScope.of(context).unfocus(),
+      child: Scaffold(
+        body: Container(
           height: MediaQuery.sizeOf(context).height,
           width: MediaQuery.sizeOf(context).width,
           child: Stack(
@@ -55,55 +57,22 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               ),
 
               Positioned(
-                top: MediaQuery.sizeOf(context).height * .4,
-                child: Container(
-                  padding: standardEdgeInserts,
-                  height: MediaQuery.sizeOf(context).height,
-                  width: MediaQuery.sizeOf(context).width,
-                  child: Form(
-                    key: formKey,
-                    child: SingleChildScrollView(
-                      child: Column(
-                        spacing: 10,
-                        children: [
-                          TextFormField(
-                            scrollPhysics: ClampingScrollPhysics(),
-                            style: TextStyle(
-                              color: const Color.fromARGB(255, 0, 0, 0),
-                            ),
-                            controller: email,
-                            cursorColor: const Color.fromARGB(
-                              255,
-                              121,
-                              121,
-                              121,
-                            ),
-                            decoration: InputDecoration(
-                              // icon: Icon(Icons.email),
-                              prefixIcon: Icon(Icons.email_outlined),
-                              prefixIconColor: const Color.fromARGB(
-                                255,
-                                63,
-                                63,
-                                63,
-                              ),
-                              contentPadding: EdgeInsets.fromLTRB(
-                                18,
-                                18,
-                                18,
-                                18,
-                              ),
-
-                              filled: true,
-                              iconColor: const Color.fromARGB(255, 0, 0, 0),
-                              fillColor: const Color.fromARGB(
-                                255,
-                                218,
-                                218,
-                                218,
-                              ),
-                              labelText: 'user email',
-                              labelStyle: Theme.of(context).textTheme.bodyMedium
+                top: MediaQuery.sizeOf(context).height * .30,
+                child: SingleChildScrollView(
+                  child: Container(
+                    padding: standardEdgeInserts,
+                    // height: 700,
+                    height: MediaQuery.sizeOf(context).height * .70,
+                    width: MediaQuery.sizeOf(context).width,
+                    child: Form(
+                      key: formKey,
+                      child: SingleChildScrollView(
+                        child: Column(
+                          spacing: 10,
+                          children: [
+                            TextFormField(
+                              scrollPhysics: ClampingScrollPhysics(),
+                              style: Theme.of(context).textTheme.bodyMedium
                                   ?.copyWith(
                                     color: const Color.fromARGB(
                                       255,
@@ -112,139 +81,225 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                                       99,
                                     ),
                                   ),
-                              border: OutlineInputBorder(
-                                borderSide: BorderSide.none,
-                                borderRadius: BorderRadius.circular(15),
-                              ),
-                            ),
-                            // validator: MultiValidator([
-                            //   RequiredValidator(errorText: 'required'),
-                            // ]).call,
-                            textInputAction: TextInputAction.next,
-                          ),
-                          SizedBox(height: 10),
-
-                          TextFormField(
-                            style: TextStyle(
-                              color: const Color.fromARGB(255, 80, 80, 80),
-                            ),
-
-                            controller: pass,
-                            cursorColor: const Color.fromARGB(255, 88, 88, 88),
-                            decoration: InputDecoration(
-                              // icon: Icon(Icons.email),
-                              prefixIcon: Icon(Icons.lock_outline_rounded),
-                              prefixIconColor: const Color.fromARGB(
+                              controller: email,
+                              cursorColor: const Color.fromARGB(
                                 255,
-                                63,
-                                63,
-                                63,
+                                121,
+                                121,
+                                121,
                               ),
-                              filled: true,
-                              contentPadding: EdgeInsets.all(18),
+                              decoration: InputDecoration(
+                                // icon: Icon(Icons.email),
+                                prefixIcon: Icon(Icons.email_outlined),
+                                prefixIconColor: const Color.fromARGB(
+                                  255,
+                                  63,
+                                  63,
+                                  63,
+                                ),
+                                contentPadding: EdgeInsets.fromLTRB(
+                                  20,
+                                  30,
+                                  20,
+                                  30,
+                                ),
 
-                              fillColor: const Color.fromARGB(
-                                255,
-                                218,
-                                218,
-                                218,
-                              ),
-                              labelText: 'password',
-                              labelStyle: Theme.of(context).textTheme.bodyMedium
-                                  ?.copyWith(
-                                    color: const Color.fromARGB(
-                                      255,
-                                      99,
-                                      99,
-                                      99,
-                                    ),
-                                  ),
-                              border: OutlineInputBorder(
-                                borderSide: BorderSide.none,
-                                borderRadius: BorderRadius.circular(15),
-                              ),
-                            ),
-                            // validator: MultiValidator([
-                            //   RequiredValidator(errorText: 'required'),
-                            // ]).call,
-                          ),
-                          Align(
-                            alignment: Alignment.centerRight,
-                            child: TextButton(
-                              onPressed: () {},
-                              child: Text(
-                                'new user ?',
-                                style: Theme.of(context).textTheme.bodySmall
+                                filled: true,
+                                iconColor: const Color.fromARGB(255, 0, 0, 0),
+                                fillColor: const Color.fromARGB(
+                                  255,
+                                  218,
+                                  218,
+                                  218,
+                                ),
+                                labelText: 'user email',
+                                labelStyle: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium
                                     ?.copyWith(
-                                      decoration: TextDecoration.underline,
-                                      color: Colors.black,
+                                      color: const Color.fromARGB(
+                                        255,
+                                        99,
+                                        99,
+                                        99,
+                                      ),
                                     ),
+                                border: OutlineInputBorder(
+                                  borderSide: BorderSide.none,
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
+                              ),
+                              // validator: MultiValidator([
+                              //   RequiredValidator(errorText: 'required'),
+                              // ]).call,
+                              textInputAction: TextInputAction.next,
+                            ),
+                            SizedBox(height: 10),
+
+                            TextFormField(
+                              style: TextStyle(
+                                color: const Color.fromARGB(255, 80, 80, 80),
+                              ),
+
+                              controller: pass,
+                              cursorColor: const Color.fromARGB(
+                                255,
+                                88,
+                                88,
+                                88,
+                              ),
+                              decoration: InputDecoration(
+                                // icon: Icon(Icons.email),
+                                prefixIcon: Icon(Icons.lock_outline_rounded),
+                                prefixIconColor: const Color.fromARGB(
+                                  255,
+                                  63,
+                                  63,
+                                  63,
+                                ),
+                                filled: true,
+                                contentPadding: EdgeInsets.all(18),
+
+                                fillColor: const Color.fromARGB(
+                                  255,
+                                  218,
+                                  218,
+                                  218,
+                                ),
+                                labelText: 'password',
+                                labelStyle: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium
+                                    ?.copyWith(
+                                      color: const Color.fromARGB(
+                                        255,
+                                        99,
+                                        99,
+                                        99,
+                                      ),
+                                    ),
+                                border: OutlineInputBorder(
+                                  borderSide: BorderSide.none,
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
+                              ),
+                              // validator: MultiValidator([
+                              //   RequiredValidator(errorText: 'required'),
+                              // ]).call,
+                            ),
+                            // SizedBox(height: 100),
+                            Align(
+                              alignment: Alignment.centerRight,
+                              child: TextButton(
+                                onPressed: () {},
+                                child: Text(
+                                  'new user ?',
+                                  style: Theme.of(context).textTheme.bodySmall
+                                      ?.copyWith(
+                                        decoration: TextDecoration.underline,
+                                        color: Colors.black,
+                                      ),
+                                ),
                               ),
                             ),
-                          ),
-                          Align(
-                            alignment: Alignment.center,
-                            child: InkWell(
-                              child: Container(
-                                alignment: Alignment.center,
-                                width: 200,
-                                padding: EdgeInsets.all(10),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  shape: BoxShape.rectangle,
-                                  gradient: LinearGradient(
-                                    colors: [
-                                      Colors.amber,
-                                      Colors.amber,
-                                      const Color.fromARGB(255, 255, 219, 111),
-                                    ],
+                            Align(
+                              alignment: Alignment.center,
+                              child: InkWell(
+                                child: Container(
+                                  alignment: Alignment.center,
+                                  width: 200,
+                                  padding: EdgeInsets.all(10),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    shape: BoxShape.rectangle,
+                                    gradient: LinearGradient(
+                                      colors: [
+                                        // Colors.amber,
+                                        // Colors.amber,
+                                        // const Color.fromARGB(255, 255, 219, 111),
+                                        const Color.fromARGB(255, 95, 99, 102),
+                                        const Color.fromARGB(255, 72, 77, 90),
+                                        const Color.fromARGB(255, 90, 90, 90),
+                                        const Color.fromARGB(
+                                          255,
+                                          116,
+                                          115,
+                                          115,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  child: Text(
+                                    'login',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyMedium
+                                        ?.copyWith(color: Colors.white),
                                   ),
                                 ),
-                                child: Text('login'),
+                                onTap: () async {
+                                  if (formKey.currentState?.validate() ??
+                                      false) {}
+                                },
                               ),
-                              onTap: () async {
-                                if (formKey.currentState?.validate() ??
-                                    false) {}
-                              },
                             ),
-                          ),
-                          SizedBox(height: 10),
+                            SizedBox(height: 10),
 
-                          // const CustomDivider(),
-                          SizedBox(height: 10),
-                          ElevatedButton(
-                            onPressed: () async {},
-                            style: Theme.of(context).elevatedButtonTheme.style,
-                            child: Row(
-                              spacing: 13,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text('sigIn with Google'),
-                                // Image.asset(
-                                //   'assets/icon/google.png',
-                                //   height: 23,
-                                //   fit: BoxFit.contain,
-                                // ),
-                              ],
+                            // const CustomDivider(),
+                            SizedBox(height: 10),
+                            ElevatedButton(
+                              onPressed: () async {},
+                              style: Theme.of(context).elevatedButtonTheme.style
+                                  ?.copyWith(
+                                    fixedSize: WidgetStatePropertyAll(
+                                      Size(
+                                        MediaQuery.sizeOf(context).width * .8,
+                                        MediaQuery.sizeOf(context).height * .09,
+                                      ),
+                                    ),
+                                  ),
+                              child: Row(
+                                spacing: 13,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text('SignIn with Google'),
+                                  // Image.asset(
+                                  //   'assets/icon/google.png',
+                                  //   height: 23,
+                                  //   fit: BoxFit.contain,
+                                  // ),
+                                ],
+                              ),
                             ),
-                          ),
-                          ElevatedButton(
-                            onPressed: () async {},
-                            style: Theme.of(context).elevatedButtonTheme.style,
-                            child: Row(
-                              spacing: 13,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text('sigIn with Facebook'),
-                                // Image.asset(
-                                //   'assets/icon/facebook.png',
-                                //   height: 23,
-                                //   fit: BoxFit.contain,
-                                // ),
-                              ],
+                            SizedBox(
+                              height: MediaQuery.sizeOf(context).height * .01,
                             ),
-                          ),
-                        ],
+                            ElevatedButton(
+                              onPressed: () async {},
+                              style: Theme.of(context).elevatedButtonTheme.style
+                                  ?.copyWith(
+                                    fixedSize: WidgetStatePropertyAll(
+                                      Size(
+                                        MediaQuery.sizeOf(context).width * .8,
+                                        MediaQuery.sizeOf(context).height * .09,
+                                      ),
+                                    ),
+                                  ),
+                              child: Row(
+                                spacing: 13,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text('SignIn with Facebook'),
+                                  // Image.asset(
+                                  //   'assets/icon/facebook.png',
+                                  //   height: 23,
+                                  //   fit: BoxFit.contain,
+                                  // ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),

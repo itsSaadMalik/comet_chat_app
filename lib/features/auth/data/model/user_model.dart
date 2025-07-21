@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:comet_chat_app/core/enums/user_model_enums.dart';
 import 'package:comet_chat_app/core/enums/user_type_enums.dart';
 import 'package:comet_chat_app/core/helpers/fieldnames/user_model_fieldnames.dart';
@@ -49,6 +51,9 @@ class UserModel extends UserEntity {
     UserModelEnums.createdAt.fieldname: createdAt,
   };
 
+  factory UserModel.fromJson(String source) =>
+      UserModel.fromMap(json.decode(source));
+  String get toJson => json.encode(toMap());
   @override
   bool operator ==(covariant UserModel other) => uid == other.uid;
 

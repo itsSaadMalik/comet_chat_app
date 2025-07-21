@@ -1,4 +1,5 @@
 import 'package:comet_chat_app/core/enums/auth_status.dart';
+import 'package:comet_chat_app/features/auth/data/data%20src/remote_user_datasrc_impl.dart';
 import 'package:comet_chat_app/features/auth/data/model/auth%20credentials/email_credentials.dart';
 import 'package:comet_chat_app/features/auth/data/model/auth_results.dart';
 import 'package:comet_chat_app/features/auth/data/model/user_model.dart';
@@ -9,8 +10,12 @@ import 'package:comet_chat_app/core/utils/extensions/log_extension.dart';
 
 class OAuthLoginUsecase implements LoginUsecaseStrategy {
   final AuthStartegy authStrategy;
+  final RemoteUserDatasrcImpl remoteUserDatasrcImpl;
 
-  OAuthLoginUsecase({required this.authStrategy});
+  OAuthLoginUsecase({
+    required this.authStrategy,
+    required this.remoteUserDatasrcImpl,
+  });
   @override
   Future<AuthResults> cacheUserLocally({required UserModel user}) {
     // TODO: implement cacheUserLocally
@@ -18,10 +23,8 @@ class OAuthLoginUsecase implements LoginUsecaseStrategy {
   }
 
   @override
-  Future<AuthResults> fetchUser({required String uid}) {
-    // TODO: implement fetchUser
-    throw UnimplementedError();
-  }
+  Future<UserModel?> fetchUser({required String uid}) async =>
+      await remoteUserDatasrcImpl.fetchUserData(uid: uid);
 
   @override
   Future<AuthResults> login({

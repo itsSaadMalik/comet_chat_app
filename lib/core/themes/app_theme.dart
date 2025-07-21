@@ -12,7 +12,7 @@ class AppTheme {
       systemOverlayStyle: SystemUiOverlayStyle(statusBarColor: Colors.grey),
     ),
     textTheme: TextTheme(
-      bodyMedium: TextStyle(fontSize: 14, color: Colors.black),
+      bodyMedium: TextStyle(fontSize: 13, color: Colors.black),
       bodyLarge: TextStyle(fontSize: 23, color: Colors.black),
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
@@ -22,7 +22,7 @@ class AppTheme {
           EdgeInsets.only(top: 15, bottom: 15, left: 0),
         ),
         backgroundColor: WidgetStatePropertyAll(
-          const Color.fromARGB(255, 221, 221, 221),
+          const Color.fromARGB(255, 154, 180, 197),
         ),
         fixedSize: WidgetStatePropertyAll(Size(300, 70)),
         shape: WidgetStatePropertyAll(
@@ -30,6 +30,7 @@ class AppTheme {
             borderRadius: BorderRadiusGeometry.circular(12),
           ),
         ),
+        elevation: WidgetStatePropertyAll(0),
       ),
     ),
   );
