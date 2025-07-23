@@ -9,7 +9,10 @@ class AppTheme {
       color: Colors.white,
       elevation: 0,
       surfaceTintColor: Colors.transparent,
-      systemOverlayStyle: SystemUiOverlayStyle(statusBarColor: Colors.grey),
+      systemOverlayStyle: SystemUiOverlayStyle(
+        statusBarColor: Colors.grey,
+        systemNavigationBarColor: Colors.grey,
+      ),
     ),
     textTheme: TextTheme(
       bodyMedium: TextStyle(fontSize: 13, color: Colors.black),
@@ -39,6 +42,9 @@ class AppTheme {
     appBarTheme: AppBarTheme(
       elevation: 0,
       systemOverlayStyle: SystemUiOverlayStyle(statusBarColor: Colors.grey),
+    ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: appLightTheme.elevatedButtonTheme.style,
     ),
   );
 }

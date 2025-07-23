@@ -39,20 +39,23 @@ class UserModel extends UserEntity {
       data[UserModelEnums.usertype.fieldname],
     ).fieldname,
     profilePictureURL: data[UserModelEnums.profilePictureURL.fieldname] ?? '',
-    createdAt: data[UserModelEnums.createdAt.fieldname] ?? DateTime.now(),
+    createdAt: (data[UserModelEnums.createdAt.fieldname] != null)
+        ? DateTime.parse(data[UserModelEnums.createdAt.fieldname])
+        : DateTime.now(),
   );
 
   Map<String, dynamic> toMap() => {
     UserModelEnums.username.fieldname: username,
     UserModelEnums.email.fieldname: email,
     UserModelEnums.uid.fieldname: uid,
-    UserModelEnums.usertype.fieldname: usertype,
+    UserModelEnums.usertype.fieldname: usertype.name,
     UserModelEnums.profilePictureURL.fieldname: profilePictureURL,
-    UserModelEnums.createdAt.fieldname: createdAt,
+    UserModelEnums.createdAt.fieldname: createdAt.toString(),
   };
 
   factory UserModel.fromJson(String source) =>
       UserModel.fromMap(json.decode(source));
+
   String get toJson => json.encode(toMap());
   @override
   bool operator ==(covariant UserModel other) => uid == other.uid;

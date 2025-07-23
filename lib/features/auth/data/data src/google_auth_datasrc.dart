@@ -24,31 +24,35 @@ class GoogleAuthsource implements AuthDatasrc {
       ) {
         final session = event.session;
         final user = event.session?.user;
-
-        final authresponse = AuthResponse(session: session, user: user);
-        completer.complete(
-          (session != null && user != null)
-              ? AuthResults(
-                  authStatus: AuthStatus.success,
-                  message: 'Login successful',
-                  authResponse: authresponse,
-                )
-              : AuthResults(
-                  authStatus: AuthStatus.failure,
-                  message: 'Login failed',
-                ),
-        );
+        if (event.event == AuthChangeEvent.userUpdated ||
+            event.event == AuthChangeEvent.signedIn) {
+          event.log();
+          final authresponse = AuthResponse(session: session, user: user);
+          completer.complete(
+            (session != null && user != null)
+                ? AuthResults(
+                    authStatus: AuthStatus.success,
+                    message: 'Login successful',
+                    authResponse: authresponse,
+                  )
+                : AuthResults(
+                    authStatus: AuthStatus.failure,
+                    message: 'Login failed',
+                  ),
+          );
+        }
       });
       // 2. Trigger the OAuth flow
       final response = await supabaseClient.auth.signInWithOAuth(
         OAuthProvider.google,
-        // redirectTo: '',
+        redirectTo: 'io.supabase.flutter://login-callback',
         authScreenLaunchMode: LaunchMode.platformDefault,
       );
       // 3. Wait for the event to complete
-
       final authResponse = await completer.future;
+
       await subscription.cancel();
+
       return authResponse;
     } catch (e) {
       e.log();

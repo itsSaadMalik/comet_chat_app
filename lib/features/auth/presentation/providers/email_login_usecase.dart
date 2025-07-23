@@ -1,17 +1,20 @@
-import 'package:comet_chat_app/features/auth/application/providers/auth_strategy_provider.dart';
 import 'package:comet_chat_app/features/auth/application/providers/email_auth_startegy_provider.dart';
-import 'package:comet_chat_app/features/auth/application/providers/email_authsrc_provider.dart';
-import 'package:comet_chat_app/features/auth/application/providers/remote_user_datasrc.dart';
+import 'package:comet_chat_app/features/auth/presentation/providers/cache_repo_provider.dart';
+import 'package:comet_chat_app/features/auth/presentation/providers/user_repo_provider.dart';
 import 'package:comet_chat_app/features/auth/domain/usecase/email_login_usecase.dart';
+import 'package:comet_chat_app/features/splash%20screen/presentation/provider/auth_state_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final emailLoginUsecaseProvider = Provider<EmailLoginUsecase>((ref) {
   final emailAuthRepo = ref.read(emailAuthStrategyProvider);
-  final remoteUserRepo = ref.read();
+  final userRepo = ref.read(userRepoProvider);
+  final cacheRepo = ref.read(cacheRepoProvider);
+  final authStateRepo = ref.read(authStateRepoProvider);
 
   return EmailLoginUsecase(
     emailAuthStrategy: emailAuthRepo,
-    userRepositoryImpl: null,
-    cacheUserRepoImpl: null,
+    userRepositoryImpl: userRepo,
+    cacheUserRepoImpl: cacheRepo,
+    userAuthState: authStateRepo,
   );
 });

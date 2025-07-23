@@ -24,7 +24,7 @@ void main() async {
 }
 
 class MyApp extends ConsumerWidget {
-  MyApp({super.key});
+  const MyApp({super.key});
   // final routes = RouteConfigs().router;
   // This widget is the root of your application.
   @override

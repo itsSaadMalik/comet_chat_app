@@ -4,7 +4,10 @@ import 'package:comet_chat_app/features/auth/domain/entity/auth_credentials_base
 
 abstract class LoginUsecaseStrategy {
   Future<AuthResults> login({required AuthCredentialsBase authCredentials});
+
   Future<UserModel?> fetchUser({required String uid});
+  Future<bool> saveLogin();
+
   Future<bool> cacheUserLocally({required UserModel user});
   Future<AuthResults> loginFlow({required AuthCredentialsBase authCredentials});
 }

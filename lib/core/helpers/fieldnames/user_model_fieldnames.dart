@@ -12,7 +12,7 @@ extension UserModelFieldnames on UserModelEnums {
       case UserModelEnums.usertype:
         return 'user_type';
       case UserModelEnums.profilePictureURL:
-        return 'profile_picture_url';
+        return 'profile_picture_link';
       case UserModelEnums.createdAt:
         return 'created_at';
     }

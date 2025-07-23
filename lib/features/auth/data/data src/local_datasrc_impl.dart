@@ -30,7 +30,7 @@ class LocalDatasrcImpl implements LocalDatasrc {
   @override
   Future<bool> updateCachedUserData({required UserModel user}) {
     // TODO: implement updateCachedUserData
-    throw UnimplementedError();
+    throw UnimplementedError('no updation');
   }
 
   @override

@@ -1,7 +1,7 @@
 import 'package:comet_chat_app/core/enums/auth_types.dart';
-import 'package:comet_chat_app/features/auth/application/providers/email_authsrc_provider.dart';
-import 'package:comet_chat_app/features/auth/application/providers/facebook_auth_src_provider.dart';
-import 'package:comet_chat_app/features/auth/application/providers/google_auth_src_provider.dart';
+import 'package:comet_chat_app/features/auth/application/providers/data%20source/email_authsrc_provider.dart';
+import 'package:comet_chat_app/features/auth/application/providers/data%20source/facebook_auth_src_provider.dart';
+import 'package:comet_chat_app/features/auth/application/providers/data%20source/google_auth_src_provider.dart';
 import 'package:comet_chat_app/features/auth/data/model/auth%20startegy/email_auth_strategy.dart';
 import 'package:comet_chat_app/features/auth/data/model/auth%20startegy/facebook_auth_strategy.dart';
 import 'package:comet_chat_app/features/auth/data/model/auth%20startegy/google_auth_strategy.dart';

@@ -1,14 +1,17 @@
 import 'package:comet_chat_app/core/enums/auth_types.dart';
 import 'package:comet_chat_app/core/themes/edge_insets.dart';
-import 'package:comet_chat_app/features/auth/application/providers/email_authsrc_provider.dart';
-import 'package:comet_chat_app/features/auth/application/providers/google_auth_src_provider.dart';
+import 'package:comet_chat_app/core/utils/extensions/log_extension.dart';
+import 'package:comet_chat_app/features/auth/data/model/auth%20credentials/oauth_credentials.dart';
 import 'package:comet_chat_app/features/auth/presentation/providers/email_login_usecase.dart';
 import 'package:comet_chat_app/features/auth/presentation/providers/form_state_key.dart';
 import 'package:comet_chat_app/features/auth/presentation/providers/oauth_login_usecase.dart';
 import 'package:comet_chat_app/features/auth/presentation/widgets/custom_divider.dart';
+import 'package:comet_chat_app/features/auth/presentation/widgets/oauth_button.dart';
+import 'package:comet_chat_app/features/splash%20screen/presentation/provider/login_state_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lottie/lottie.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({super.key});
@@ -245,58 +248,36 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                             ),
                             SizedBox(height: 10),
 
-                            // const CustomDivider(),
+                            const CustomDivider(),
                             SizedBox(height: 10),
-                            ElevatedButton(
-                              onPressed: () async {},
-                              style: Theme.of(context).elevatedButtonTheme.style
-                                  ?.copyWith(
-                                    fixedSize: WidgetStatePropertyAll(
-                                      Size(
-                                        MediaQuery.sizeOf(context).width * .8,
-                                        MediaQuery.sizeOf(context).height * .09,
-                                      ),
-                                    ),
-                                  ),
-                              child: Row(
-                                spacing: 13,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text('SignIn with Google'),
-                                  // Image.asset(
-                                  //   'assets/icon/google.png',
-                                  //   height: 23,
-                                  //   fit: BoxFit.contain,
-                                  // ),
-                                ],
+                            OauthButton(
+                              onTap: () async => await googleAuth.loginFlow(
+                                authCredentials: OAuthCredentials(),
                               ),
+                              authType: AuthType.google,
                             ),
                             SizedBox(
                               height: MediaQuery.sizeOf(context).height * .01,
                             ),
-                            ElevatedButton(
-                              onPressed: () async {},
-                              style: Theme.of(context).elevatedButtonTheme.style
-                                  ?.copyWith(
-                                    fixedSize: WidgetStatePropertyAll(
-                                      Size(
-                                        MediaQuery.sizeOf(context).width * .8,
-                                        MediaQuery.sizeOf(context).height * .09,
-                                      ),
-                                    ),
-                                  ),
-                              child: Row(
-                                spacing: 13,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text('SignIn with Facebook'),
-                                  // Image.asset(
-                                  //   'assets/icon/facebook.png',
-                                  //   height: 23,
-                                  //   fit: BoxFit.contain,
-                                  // ),
-                                ],
+                            OauthButton(
+                              onTap: () async => await facebookAuth.login(
+                                authCredentials: OAuthCredentials(),
                               ),
+
+                              authType: AuthType.facebook,
+                            ),
+                            SizedBox(height: 20),
+                            ElevatedButton(
+                              onPressed: () async {
+                                await Supabase.instance.client.auth.signOut();
+                              },
+                              child: Text('sign out'),
+                            ),
+                            ElevatedButton(
+                              onPressed: () async {
+                                ref.read(loginStateProvider).value?.log();
+                              },
+                              child: Text('login state'),
                             ),
                           ],
                         ),
@@ -306,12 +287,6 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 ),
               ),
               // SizedBox(height: 100),
-              // ElevatedButton(
-              //   onPressed: () async {
-              //     logout.logout(ref: ref);
-              //   },
-              //   child: Text('data'),
-              // ),
               //
             ],
           ),

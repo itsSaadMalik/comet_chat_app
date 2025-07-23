@@ -4,11 +4,11 @@ import 'package:gotrue/src/types/auth_state.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-class UserAuthState implements UserAuthStateRepo {
+class UserAuthStateImpl implements UserAuthStateRepo {
   final SupabaseClient supabaseClient;
   final SharedPreferences sharedPreferences;
 
-  UserAuthState({
+  UserAuthStateImpl({
     required this.supabaseClient,
     required this.sharedPreferences,
   });
@@ -29,6 +29,15 @@ class UserAuthState implements UserAuthStateRepo {
   Future<bool> isLoggedIn() async {
     try {
       return sharedPreferences.getBool('is_logged_in') ?? false;
+    } catch (e) {
+      e.log();
+      return false;
+    }
+  }
+
+  Future<bool> setLogin() async {
+    try {
+      return sharedPreferences.setBool('is_logged_in', true);
     } catch (e) {
       e.log();
       return false;

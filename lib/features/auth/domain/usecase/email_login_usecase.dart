@@ -8,16 +8,19 @@ import 'package:comet_chat_app/features/auth/data/repo/user_repo_impl.dart';
 import 'package:comet_chat_app/features/auth/domain/entity/auth_credentials_base.dart';
 import 'package:comet_chat_app/features/auth/domain/entity/login_usecase_strategy.dart';
 import 'package:comet_chat_app/core/utils/extensions/log_extension.dart';
+import 'package:comet_chat_app/features/splash%20screen/data/repo/user_auth_state.dart';
 
 class EmailLoginUsecase implements LoginUsecaseStrategy {
   final EmailAuthStrategy emailAuthStrategy;
   final UserRepositoryImpl userRepositoryImpl;
   final CacheUserRepoImpl cacheUserRepoImpl;
+  final UserAuthStateImpl userAuthState;
 
   EmailLoginUsecase({
     required this.emailAuthStrategy,
     required this.userRepositoryImpl,
     required this.cacheUserRepoImpl,
+    required this.userAuthState,
   });
 
   @override
@@ -73,5 +76,10 @@ class EmailLoginUsecase implements LoginUsecaseStrategy {
       e.log();
       return AuthResults(authStatus: AuthStatus.failure, message: e.toString());
     }
+  }
+
+  @override
+  Future<bool> saveLogin() {
+    return userAuthState.setLogin();
   }
 }
