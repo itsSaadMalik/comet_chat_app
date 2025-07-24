@@ -8,5 +8,7 @@ abstract class AuthRepository {
   Future<AuthResults> signUpService({
     required AuthCredentialsBase authCredentials,
   });
+  Future<AuthResults> signOutServcie();
+
   Future<AuthResults> deleteAccount();
 }

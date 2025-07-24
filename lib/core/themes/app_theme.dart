@@ -1,3 +1,4 @@
+import 'package:comet_chat_app/core/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -35,6 +36,10 @@ class AppTheme {
         ),
         elevation: WidgetStatePropertyAll(0),
       ),
+    ),
+    floatingActionButtonTheme: FloatingActionButtonThemeData(
+      backgroundColor: AppColors.appPrimaryColor,
+      foregroundColor: Colors.black,
     ),
   );
   static ThemeData get appDarkTheme => ThemeData(

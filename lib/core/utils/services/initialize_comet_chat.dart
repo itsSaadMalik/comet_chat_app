@@ -3,7 +3,7 @@ import 'package:comet_chat_app/core/utils/extensions/log_extension.dart';
 import 'package:cometchat_calls_uikit/cometchat_calls_uikit.dart';
 import 'package:cometchat_chat_uikit/cometchat_chat_uikit.dart';
 
-Future<bool> initializeCometChat() async {
+Future<bool> initializeCometChat({required String uid}) async {
   try {
     UIKitSettings uiKitSettings =
         (UIKitSettingsBuilder()
@@ -22,15 +22,22 @@ Future<bool> initializeCometChat() async {
             .build();
     CometChatUIKit.init(
       uiKitSettings: uiKitSettings,
-      onSuccess: (successMessage) {
+      onSuccess: (successMessage) async {
         successMessage.log();
-        CometChat.login(
-          'cometchat-uid-1',
+
+        final loginResults = await CometChat.login(
+          uid,
           CometChatConfigs.auhtKey,
-          onSuccess: (user) => user.uid.log(),
-          onError: (excep) => excep.message?.log(),
+          onSuccess: (user) => user.uid.log(startText: 'uid :'),
+          onError: (excep) =>
+              excep.message?.log(startText: 'comet-chat exception'),
         );
+        (loginResults != null).log();
         return true;
+      },
+      onError: (e) {
+        e.message?.log();
+        return false;
       },
     );
     return false;

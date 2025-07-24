@@ -24,4 +24,7 @@ class AuthService implements AuthRepository {
   Future<AuthResults> signUpService({
     required AuthCredentialsBase authCredentials,
   }) async => authStartegy.signUp(authCredentials: authCredentials);
+
+  @override
+  Future<AuthResults> signOutServcie() async => authStartegy.signOut();
 }

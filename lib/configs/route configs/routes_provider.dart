@@ -33,23 +33,55 @@ final routesProvider = Provider<GoRouter>((ref) {
     ],
     refreshListenable: authStateStream,
     redirect: (context, state) async {
-      final authState = ref.watch(loginStateProvider);
-      if (authState.isLoading) {
-        'message1'.log();
+      final login = authStateStream.curenntUser;
 
-        return null;
+      final isLoggedIn = login != null;
+
+      final currentLocation = state.matchedLocation;
+
+      final isOnLogin = currentLocation == RouteNames.login;
+      final isOnSignUp = currentLocation == RouteNames.signUp;
+      final isOnSplash = currentLocation == RouteNames.splash;
+
+      final isOnpublicRoute = isOnLogin || isOnSignUp || isOnSplash;
+      if (!isLoggedIn && !isOnpublicRoute) {
+        return RouteNames.login;
       }
-      if (((authState.value ?? false)) &&
-          !(state.matchedLocation == RouteNames.home)) {
-        '${authState.value} user logged in'.log();
+      if (((isLoggedIn)) && isOnpublicRoute) {
+        '$isLoggedIn user logged in'.log();
         return RouteNames.home;
       }
-      {
-        //print its logged in
-        '${authState.value} user not logged in'.log();
-      }
 
-      return RouteNames.login;
+      return null;
     },
   );
 });
+
+      // final loginState = ref.watch(loginStateProvider);
+      // final login = authStateStream.curenntUser;
+      // final isLoading = loginState.isLoading;
+      // final isLoggedIn = loginState.value ?? false;
+
+      // final currentLocation = state.matchedLocation;
+
+      // final isOnLogin = currentLocation == RouteNames.login;
+      // final isOnSignUp = currentLocation == RouteNames.signUp;
+
+      // if (isLoading) {
+      //   'message1'.log();
+
+      //   return null;
+      // }
+      // if (((loginState.value ?? false)) &&
+      //     !(state.matchedLocation == RouteNames.home)) {
+      //   '${loginState.value} user logged in'.log();
+      //   return RouteNames.home;
+      // }
+      // if (!(loginState.value ?? false) &&
+      //     state.matchedLocation != RouteNames.login) {
+      //   //print its logged in
+      //   '${loginState.value} user not logged in'.log();
+
+      //   return RouteNames.login;
+      // }
+      // return null;
