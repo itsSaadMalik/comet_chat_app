@@ -1,3 +1,4 @@
+import 'package:comet_chat_app/configs/route%20configs/route_names.dart';
 import 'package:comet_chat_app/core/themes/edge_insets.dart';
 import 'package:comet_chat_app/features/auth/application/providers/data%20source/google_auth_src_provider.dart';
 import 'package:comet_chat_app/features/conversations/conversation_screen.dart';
@@ -8,6 +9,7 @@ import 'package:comet_chat_app/features/splash%20screen/presentation/provider/au
 import 'package:cometchat_chat_uikit/cometchat_chat_uikit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
@@ -28,7 +30,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     final oAuth = ref.read(googleAuthSrcProvider);
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          context.goNamed(RouteNames.chatUsers);
+        },
         child: Icon(Icons.chat, size: 25),
       ),
       body: user.when(
