@@ -18,7 +18,7 @@ class RemoteUserDatasrcImpl implements RemoteUserDatasrc {
       await supabase.client.from('users').insert(user.toMap());
 
       return OperationResults(
-        operationResultsStatus: OperationResultsEnums.failure,
+        operationResultsStatus: OperationResultsEnums.success,
         message: 'created new user account',
       );
     } catch (e) {

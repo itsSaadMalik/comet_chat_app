@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:comet_chat_app/core/enums/auth_status.dart';
+import 'package:comet_chat_app/core/helpers/models/operation_results_model.dart';
 import 'package:comet_chat_app/features/auth/data/model/auth_results.dart';
 import 'package:comet_chat_app/features/auth/domain/data%20src/auth_datasrc.dart';
 import 'package:comet_chat_app/features/auth/domain/entity/auth_credentials_base.dart';
@@ -57,12 +58,6 @@ class FacebookAuthsource implements AuthDatasrc {
   }
 
   @override
-  Future<AuthResults> signUp({required AuthCredentialsBase authCredentials}) {
-    // TODO: implement deleteAccount
-    throw UnimplementedError();
-  }
-
-  @override
   Future<AuthResults> signOut() async {
     try {
       await supabaseClient.auth.signOut();
@@ -82,6 +77,12 @@ class FacebookAuthsource implements AuthDatasrc {
   @override
   Future<AuthResults> deleteAccount() {
     // TODO: implement deleteAccount
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<OperationResults> signUp({required User user}) {
+    // TODO: implement signUp
     throw UnimplementedError();
   }
 }

@@ -1,7 +1,9 @@
+import 'package:comet_chat_app/core/helpers/models/operation_results_model.dart';
 import 'package:comet_chat_app/features/auth/data/data%20src/email_auth_datasrc.dart';
 import 'package:comet_chat_app/features/auth/data/model/auth_results.dart';
 import 'package:comet_chat_app/features/auth/domain/entity/auth_credentials_base.dart';
 import 'package:comet_chat_app/features/auth/domain/entity/auth_startegy.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class EmailAuthStrategy implements AuthStartegy {
   final EmailAuthSource emailAuthDatasrc;
@@ -20,7 +22,6 @@ class EmailAuthStrategy implements AuthStartegy {
       await emailAuthDatasrc.deleteAccount();
 
   @override
-  Future<AuthResults> signUp({
-    required AuthCredentialsBase authCredentials,
-  }) async => await emailAuthDatasrc.signUp(authCredentials: authCredentials);
+  Future<OperationResults> signUp({required User user}) async =>
+      await emailAuthDatasrc.signUp(user: user);
 }

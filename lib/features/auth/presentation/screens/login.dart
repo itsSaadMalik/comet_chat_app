@@ -4,7 +4,7 @@ import 'package:comet_chat_app/core/utils/extensions/log_extension.dart';
 import 'package:comet_chat_app/features/auth/data/model/auth%20credentials/oauth_credentials.dart';
 import 'package:comet_chat_app/features/auth/presentation/providers/email_login_usecase.dart';
 import 'package:comet_chat_app/features/auth/presentation/providers/form_state_key.dart';
-import 'package:comet_chat_app/features/auth/presentation/providers/oauth_login_usecase.dart';
+import 'package:comet_chat_app/features/auth/presentation/providers/oauth_login_usecase_prov.dart';
 import 'package:comet_chat_app/features/auth/presentation/widgets/custom_divider.dart';
 import 'package:comet_chat_app/features/auth/presentation/widgets/oauth_button.dart';
 import 'package:comet_chat_app/features/splash%20screen/presentation/provider/login_state_provider.dart';

@@ -10,10 +10,5 @@ class SplashScreen extends ConsumerWidget {
       color: Colors.white,
       child: Center(child: CircularProgressIndicator(color: Colors.grey)),
     );
-    // return loginState.when(
-    //   data: (isloggedin) => isloggedin ? HomeScreen() : LoginScreen(),
-    //   error: (error, stackTrace) => ErrorPage(),
-    //   loading: () =>
-    // );
   }
 }

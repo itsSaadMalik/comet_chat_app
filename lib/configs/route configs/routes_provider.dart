@@ -2,7 +2,6 @@ import 'package:comet_chat_app/configs/route%20configs/route_names.dart';
 import 'package:comet_chat_app/features/auth/presentation/screens/login.dart';
 import 'package:comet_chat_app/features/home/view(presentaion)/home_screen.dart';
 import 'package:comet_chat_app/features/new%20chat/presentation/screens/all_user_screens.dart';
-import 'package:comet_chat_app/features/new%20chat/presentation/screens/new_chat_screen.dart';
 import 'package:comet_chat_app/features/splash%20screen/presentation/provider/auth_state_notifier.dart';
 import 'package:comet_chat_app/features/splash%20screen/presentation/screens/splash_screen.dart';
 import 'package:comet_chat_app/core/utils/extensions/log_extension.dart';

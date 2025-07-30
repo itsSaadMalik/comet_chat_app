@@ -12,7 +12,6 @@ import 'package:comet_chat_app/features/auth/domain/entity/auth_startegy.dart';
 import 'package:comet_chat_app/features/auth/domain/entity/login_usecase_strategy.dart';
 import 'package:comet_chat_app/core/utils/extensions/log_extension.dart';
 import 'package:comet_chat_app/features/splash%20screen/data/repo/user_auth_state.dart';
-import 'package:comet_chat_app/features/splash%20screen/domain/repo/auth_state.dart';
 
 class OAuthLoginUsecase implements LoginUsecaseStrategy {
   final AuthStartegy authStrategy;
@@ -67,7 +66,8 @@ class OAuthLoginUsecase implements LoginUsecaseStrategy {
           authResponse != null) {
         final user = authResponse.session?.user;
         if (user == null) {
-          'user null ji'.log();
+          "user's null".log();
+          return AuthResults(authStatus: AuthStatus.failure, message: '');
           // user.id.log();
         }
         final uid = authResponse.user!.id;
@@ -79,30 +79,10 @@ class OAuthLoginUsecase implements LoginUsecaseStrategy {
 
         // check if user doesn't exist, create a new one
         if (!userExists) {
-          //user doesn't exists
-          final email = user?.email;
-          final userMeta = user?.userMetadata;
+          // create a new user in cometChat
+          final cometChatSignup = await authStrategy.signUp(user: user);
 
-          final name = userMeta?['full_name'] ?? userMeta?['name'] ?? 'no name';
-          final avatarUrl =
-              userMeta?['avatar_url'] ??
-              userMeta?['picture'] ??
-              'profile picture';
-
-          final newUser = UserModel(
-            username: name != null ? name.toString() : 'no user name',
-            email: email ?? 'na',
-            uid: uid,
-            usertype: UserTypeEnums.user,
-            profilePictureURL: avatarUrl != null ? avatarUrl.toString() : '',
-            createdAt: DateTime.parse(
-              user?.createdAt ?? DateTime.now().toString(),
-            ),
-          );
-          final newuserCreation = await userRepositoryImpl.createUser(
-            user: newUser,
-          );
-          if (newuserCreation.operationResultsStatus !=
+          if (cometChatSignup.operationResultsStatus !=
               OperationResultsEnums.success) {
             // ?user account couldn be created so delete newly created
             final deletionResult = await authStrategy.deleteAccount();

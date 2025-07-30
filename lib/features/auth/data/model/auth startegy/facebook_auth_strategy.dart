@@ -1,7 +1,9 @@
+import 'package:comet_chat_app/core/helpers/models/operation_results_model.dart';
 import 'package:comet_chat_app/features/auth/data/data%20src/facebook_auth_datasrc.dart';
 import 'package:comet_chat_app/features/auth/data/model/auth_results.dart';
 import 'package:comet_chat_app/features/auth/domain/entity/auth_credentials_base.dart';
 import 'package:comet_chat_app/features/auth/domain/entity/auth_startegy.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class FacebookAuthStrategy implements AuthStartegy {
   final FacebookAuthsource facebookAuthsource;
@@ -20,7 +22,6 @@ class FacebookAuthStrategy implements AuthStartegy {
       facebookAuthsource.deleteAccount();
 
   @override
-  Future<AuthResults> signUp({
-    required AuthCredentialsBase authCredentials,
-  }) async => facebookAuthsource.signUp(authCredentials: authCredentials);
+  Future<OperationResults> signUp({required User user}) async =>
+      facebookAuthsource.signUp(user: user);
 }
