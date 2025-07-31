@@ -141,7 +141,9 @@ class GoogleAuthsource implements AuthDatasrc {
 
   @override
   Future<AuthResults> deleteAccount() {
-    // TODO: implement deleteAccount
-    throw UnimplementedError();
+    // "could'nt implement since supbase doesnt have any method to do this from code, so it requires a server endpoint to do this"
+    throw UnimplementedError(
+      "could'nt implement since supbase doesnt have any method to do this from code, so it requires a server endpoint to do this",
+    );
   }
 }
